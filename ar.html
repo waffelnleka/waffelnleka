@@ -6,15 +6,29 @@
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
   </head>
   <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs>
-      <!-- Add your marker and image here -->
+    <a-scene embedded arjs="sourceType: webcam;">
+      <!-- Hiro Marker -->
       <a-marker preset="hiro">
-        <!-- Image to display when the marker is detected -->
-        <a-image src="https://static.ctclove.ru/uploads/News/ImageFromText/2464392180.jpeg" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-image>
+        <!-- Image with click interaction -->
+        <a-image id="interactiveImage" src="https://static.ctclove.ru/uploads/News/ImageFromText/2464392180.jpeg" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-image>
+        <!-- Text initially hidden -->
+        <a-text id="overlayText" value="This is Vupsen. He loves you." position="0 1.2 0" align="center" visible="false"></a-text>
       </a-marker>
-
       <!-- Camera -->
       <a-entity camera></a-entity>
     </a-scene>
+    
+    <script>
+      // JavaScript for interactivity
+      document.addEventListener('DOMContentLoaded', function () {
+        var image = document.querySelector('#interactiveImage');
+        var text = document.querySelector('#overlayText');
+
+        image.addEventListener('click', function () {
+          // Toggle text visibility
+          text.setAttribute('visible', !text.getAttribute('visible'));
+        });
+      });
+    </script>
   </body>
 </html>
