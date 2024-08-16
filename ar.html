@@ -10,24 +10,42 @@
       <!-- Hiro Marker -->
       <a-marker preset="hiro">
         <!-- Image with click interaction -->
-        <a-image id="interactiveImage" src="https://static.ctclove.ru/uploads/News/ImageFromText/2464392180.jpeg" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-image>
+        <a-image id="interactiveImage" src="https://static.ctclove.ru/uploads/News/ImageFromText/2464392180.jpeg" position="0 0.5 0" rotation="-90 0 0" width="1" height="1" class="clickable"></a-image>
         <!-- Text initially hidden -->
-        <a-text id="overlayText" value="This is Vupsen. He loves you." position="0 1.2 0" align="center" visible="false"></a-text>
+        <a-text id="overlayText" value="Your Text Here" position="0 1.2 0" align="center" visible="false"></a-text>
+        <!-- Debug Box -->
+        <a-box id="debugBox" position="0 1.5 -1" rotation="0 45 0" color="red" depth="0.1" height="0.1" width="0.1" visible="false"></a-box>
       </a-marker>
       <!-- Camera -->
       <a-entity camera></a-entity>
     </a-scene>
     
     <script>
-      // JavaScript for interactivity
+      // JavaScript for interactivity and debugging
       document.addEventListener('DOMContentLoaded', function () {
         var image = document.querySelector('#interactiveImage');
         var text = document.querySelector('#overlayText');
+        var debugBox = document.querySelector('#debugBox');
 
+        // Debugging
+        if (image) {
+          console.log('Image element found.');
+        } else {
+          console.error('Image element not found.');
+        }
+        
         image.addEventListener('click', function () {
+          console.log('Image clicked.');
           // Toggle text visibility
           text.setAttribute('visible', !text.getAttribute('visible'));
+          // Show debug box
+          debugBox.setAttribute('visible', true);
         });
+
+        // Optional: Hide the debug box after a delay
+        setTimeout(function() {
+          debugBox.setAttribute('visible', false);
+        }, 2000); // Hide after 2 seconds
       });
     </script>
   </body>
