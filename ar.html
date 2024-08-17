@@ -15,19 +15,20 @@
             <a-box position="0 0.5 0" rotation="0 45 0" color="#4CC3D9" id="ar-box" scale="0.5 0.5 0.5"></a-box>
         </a-marker>
         <a-entity camera>
-            <!-- Cursor to detect clicks -->
-            <a-entity cursor="fuse: true; fuseTimeout: 500"
-                      position="0 0 -1"
-                      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                      material="color: black; shader: flat">
-            </a-entity>
+            <!-- Cursor for detecting clicks -->
+            <a-entity cursor="rayOrigin: mouse"></a-entity>
         </a-entity>
     </a-scene>
 
     <script>
-        // Add an event listener for when the box is clicked
-        document.querySelector('#ar-box').addEventListener('click', function() {
-            // Forward to another page when the box is clicked
+        // Add event listeners for touch and click events
+        const arBox = document.querySelector('#ar-box');
+
+        arBox.addEventListener('click', function () {
+            window.location.href = 'newpage.html';
+        });
+
+        arBox.addEventListener('touchstart', function () {
             window.location.href = 'newpage.html';
         });
     </script>
