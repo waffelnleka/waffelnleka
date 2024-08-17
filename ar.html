@@ -21,15 +21,27 @@
     </a-scene>
 
     <script>
-        // Add event listeners for touch and click events
+        // Function to handle redirection
+        function redirectToNewPage() {
+            window.location.href = 'newpage.html';
+        }
+
+        // Add event listeners for click and touchstart events
         const arBox = document.querySelector('#ar-box');
 
-        arBox.addEventListener('click', function () {
-            window.location.href = 'newpage.html';
+        // Add touchend event for better mobile support
+        arBox.addEventListener('touchend', function () {
+            redirectToNewPage();
         });
 
+        // Add click event
+        arBox.addEventListener('click', function () {
+            redirectToNewPage();
+        });
+
+        // Add fallback for touchstart event in case touchend is not detected
         arBox.addEventListener('touchstart', function () {
-            window.location.href = 'newpage.html';
+            redirectToNewPage();
         });
     </script>
 </body>
