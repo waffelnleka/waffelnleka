@@ -11,18 +11,19 @@
     <a-scene embedded arjs>
         <!-- Marker to detect (Hiro marker in this case) -->
         <a-marker preset="hiro" id="marker">
-            <!-- You can put any AR content here, like 3D models or text -->
+            <!-- Image to be displayed in AR -->
+            <a-image src="simpletest.png" id="ar-image" position="0 0 0" rotation="0 0 0" scale="1 1 1"></a-image>
         </a-marker>
         <a-entity camera></a-entity>
     </a-scene>
 
     <script>
-        // Get the marker element
-        var marker = document.querySelector('#marker');
+        // Get the AR image element
+        var arImage = document.querySelector('#ar-image');
 
-        // Add an event listener for when the marker is detected
-        marker.addEventListener('markerFound', function() {
-            // Forward to another page when the marker is detected
+        // Add an event listener for when the image is clicked
+        arImage.addEventListener('click', function() {
+            // Forward to another page when the image is clicked
             window.location.href = 'newpage.html';
         });
     </script>
