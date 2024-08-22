@@ -1,48 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Marker Detection</title>
+<html>
+  <head>
+    <!-- Include A-Frame and AR.js libraries -->
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-</head>
-<body style="margin: 0; overflow: hidden;">
+  </head>
+  <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs>
-        <!-- Marker to detect (Hiro marker in this case) -->
-        <a-marker preset="hiro" id="marker">
-            <!-- Image to be displayed in AR -->
-            <a-box position="0 0.5 0" rotation="0 45 0" color="#4CC3D9" id="ar-box" scale="0.5 0.5 0.5"></a-box>
-        </a-marker>
-        <a-entity camera>
-            <!-- Cursor for detecting clicks -->
-            <a-entity cursor="rayOrigin: mouse"></a-entity>
-        </a-entity>
+      <!-- Define the Hiro marker -->
+      <a-marker preset="hiro">
+        <!-- Add AR content with URL -->
+        <a-image src="simpletest.png" position="0 0.5 0" rotation="-90 0 0" width="1" height="1"></a-image>
+      </a-marker>
+
+      <!-- Camera -->
+      <a-entity camera></a-entity>
     </a-scene>
-
-    <script>
-        // Function to handle redirection
-        function redirectToNewPage() {
-            window.location.href = 'newpage.html';
-        }
-
-        // Add event listeners for click and touchstart events
-        const arBox = document.querySelector('#ar-box');
-
-        // Add touchend event for better mobile support
-        arBox.addEventListener('touchend', function () {
-            redirectToNewPage();
-        });
-
-        // Add click event
-        arBox.addEventListener('click', function () {
-            redirectToNewPage();
-        });
-
-        // Add fallback for touchstart event in case touchend is not detected
-        arBox.addEventListener('touchstart', function () {
-            redirectToNewPage();
-        });
-    </script>
-</body>
+  </body>
 </html>
